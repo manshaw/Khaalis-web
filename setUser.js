@@ -1,0 +1,2 @@
+document.getElementById('currentUser').innerHTML = window.sessionStorage.getItem("AuthenticationState");
+document.getElementById('userImage').setAttribute("src", window.sessionStorage.getItem("AuthenticationState") + ".jpg");
