@@ -41,15 +41,19 @@ function fetchData(childSnapshot, snapshot) {
     if (childSnapshot.child('name').val()) {
         cell1.innerHTML = cell1.innerHTML + ' (' + childSnapshot.child('name').val() + ')';
     }
-    row.insertCell(2).innerHTML = childSnapshot.child('milkQuantity').val();
-    row.insertCell(3).innerHTML = childSnapshot.child('yogurtQuantity').val();
-    row.insertCell(4).innerHTML = childSnapshot.child('status').val();
-    if (row.cells[4].innerHTML !== 'Resumed') {
+    row.insertCell(2).innerHTML = childSnapshot.child('buffaloMilkQuantity').val();
+    row.insertCell(3).innerHTML = childSnapshot.child('cowMilkQuanity').val();
+    row.insertCell(4).innerHTML = childSnapshot.child('yogurtQuantity').val();
+    row.insertCell(5).innerHTML = childSnapshot.child('butterQuantity').val();
+    row.insertCell(6).innerHTML = childSnapshot.child('gheeQuantity').val();
+    row.insertCell(7).innerHTML = childSnapshot.child('status').val();
+    if (row.cells[7].innerHTML !== 'Resumed') {
         row.style.backgroundColor = 'red';
         row.style.color = 'white';
     }
-    row.insertCell(5).innerHTML = convertTime(childSnapshot.child('timeStamp').val());
-    row.insertCell(6).innerHTML = childSnapshot.child('address').val();
+    row.insertCell(8).innerHTML = convertTime(childSnapshot.child('timeStamp').val());
+    row.insertCell(9).innerHTML = childSnapshot.child('address').val();
+    row.insertCell(10).innerHTML = childSnapshot.child('total').val();
 }
 
 function convertEpoch(timeStamp) {

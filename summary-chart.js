@@ -16,40 +16,52 @@ var ref = database.ref("Test/User/");
 ref.on("value", function (snapshot) {
   var users = 0;
   var orders = 0;
-  var milk = 0;
+  var milkBuffalo = 0;
+  var milkCow = 0;
   var yogurt = 0;
+  var butter = 0;
+  var ghee = 0;
 
   snapshot.forEach(function (childSnapshot) {
     users = snapshot.numChildren();
     childSnapshot.forEach(function (grandChild) {
       grandChild.forEach(function (Child) {
         orders = orders + 1;
-        milk = milk + Child.child('milkQuantity').val();
+        milkBuffalo = milkBuffalo + Child.child('buffaloMilkQuantity').val();
+        milkCow = milkCow + Child.child('cowMilkQuanity').val();
         yogurt = yogurt + Child.child('yogurtQuantity').val();
+        butter = butter + Child.child('butterQuantity').val();
+        ghee = ghee + Child.child('gheeQuantity').val();
       });
     });
   });
   document.getElementById('total-users').innerHTML = "Total Users: " + users;
   document.getElementById('total-orders').innerHTML = "Total Orders: " + orders;
-  document.getElementById('total-milk').innerHTML = "Total Milk: " + milk;
+  document.getElementById('total-milk-buffalo').innerHTML = "Total Milk(Buffalo): " + milkBuffalo;
+  document.getElementById('total-milk-cow').innerHTML = "Total Milk(Cow): " + milkCow;
   document.getElementById('total-yogurt').innerHTML = "Total Yogurt: " + yogurt;
-  setChart(users, orders, milk, yogurt);
+  document.getElementById('total-butter').innerHTML = "Total Butter: " + butter;
+  document.getElementById('total-ghee').innerHTML = "Total Ghee: " + ghee;
+  setChart(users, orders, milkBuffalo, milkCow, yogurt, butter, ghee);
 });
 
-function setChart(users, orders, milk, yogurt) {
+function setChart(users, orders, milkBuffalo, milkCow, yogurt, butter, ghee) {
 
   var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
   const donutData = {
     labels: [
       'Users',
       'Orders',
-      'Milk',
+      'Buffalo Milk',
+      'Cow Milk',
       'Yogurt',
+      'Butter',
+      'Ghee'
     ],
     datasets: [
       {
-        data: [users, orders, milk, yogurt],
-        backgroundColor: ['#ffd800', '#00a65a', '#007bff', '#dc3545'],
+        data: [users, orders, milkBuffalo, milkCow, yogurt, butter, ghee],
+        backgroundColor: ['#ffd800', '#00a65a', '#007bff', '#57009F', '#87654d', '#00656f', '#dc3545'],
       }
     ]
   }
